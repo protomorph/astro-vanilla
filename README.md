@@ -34,7 +34,6 @@ npm create astro@latest -- --template protomorph/astro-vanilla
 
 or use one of these:
 
-https://github.com/protomorph/astro-vanilla
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github.com/protomorph/astro-vanilla)
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github.com/protomorph/astro-vanilla)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/protomorph/astro-vanilla)
