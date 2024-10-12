@@ -1,12 +1,16 @@
 # Astro Vanilla
 
-Clone this Repository.
+A simple, framework free Astro blog starter template.
+
+## Clone this Repository.
 
 ```sh
 # with git
-git clone https://github.com/protomorph/astro-zero.git
+git clone https://github.com/protomorph/astro-vanilla.git
 # or with GitHub CLI
-gh repo clone protomorph/astro-zero
+gh repo clone protomorph/astro-vanilla
+# or creata new astro site using
+npm create astro@latest -- --template protomorph/astro-vanilla
 ```
 
 or use one of these:
@@ -41,7 +45,7 @@ Inside of your Astro project, you'll see the following folders and files:
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Astro looks for `.astro`, `.md` or `.mdx` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
