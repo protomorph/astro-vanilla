@@ -25,6 +25,13 @@ export function filterDrafts ({ data }: CollectionEntry<'blog'>) {
   return true
 }
 
+export function filterFeatured (
+  posts: CollectionEntry<'blog'>,
+  limit: number = 4
+) {
+  return [...posts.filter(({ data }) => data.featured)].slice(0, limit)
+}
+
 export async function getAllPosts (
   limit?: number
 ): Promise<CollectionEntry<'blog'>[]> {
