@@ -1,0 +1,37 @@
+{
+  "name": "astro-vanilla",
+  "description": "A simple, framework free Astro blog starter template",
+  "author": "protomorph (https://github.com/protomorph/)",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "astro.config.ts",
+  "type": "module",
+  "keywords": [
+    "mdx",
+    "ssg",
+    "html",
+    "astro",
+    "markdown",
+    "typescript",
+    "static-site",
+    "astro-theme",
+    "astro-starter",
+    "astro-template"
+  ],
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.3",
+    "@astrojs/mdx": "^3.1.7",
+    "@astrojs/rss": "^4.0.7",
+    "@astrojs/sitemap": "^3.1.6",
+    "astro": "^4.15.10",
+    "astro-auto-import": "^0.4.3",
+    "typescript": "^5.6.2"
+  }
+}

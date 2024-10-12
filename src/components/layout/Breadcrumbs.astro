@@ -1,0 +1,87 @@
+---
+type Crumb = {
+  href: string
+  text: string
+  last: boolean
+  current: 'page' | false
+}
+
+type Props = {
+  separator?: string
+}
+
+const { separator = '&gt;' } = Astro.props
+const { pathname } = new URL(Astro.request.url)
+const paths = pathname.split('/').filter(x => x)
+
+const titlecase = (txt: string) => txt.replace(
+  /\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substring(1).toLowerCase()
+)
+
+const parts: Crumb[] = [{
+  href: '/',
+  text: 'Home',
+  last: pathname === '/',
+  current: pathname === '/' ? 'page' : false,
+}]
+
+paths.forEach((text, i) => {
+  const href = `/${paths.slice(0, i + 1).join('/')}`
+  parts.push({
+    href,
+    last: paths.length - 1 === i,
+    text: titlecase(text.replace(/[-_]/g, ' ')),
+    current: pathname === href ? 'page' : false,
+  })
+})
+---
+
+<nav>
+  <ol role="list">
+    {parts.map(({ text, href, current, last }) => last ? (
+      <li aria-current={current} role="listitem"><span>{text}</span></li>
+    ) : (
+      <li role="listitem"><a {href}>{text}</a><span role="separator" set:html={separator} /></li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  nav {
+    align-content: start;
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: var(--breakout-columns);
+    margin-block-start: 16px;
+  }
+  ol {
+		background-color: color-mix(in hsl, var(--bg-color-mute) 48%, var(--bg-color));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    grid-column: 2 / 3;
+    list-style: none;
+    margin: 0;
+    padding: 12px 16px;
+  }
+  @container (inline-size > 720px) {
+    ol {
+      border-radius: 12px;
+    }
+  }
+  li {
+    display: contents;
+    font-size: .875rem;
+    line-height: 1.5rem;
+  }
+  a {
+    text-decoration: none;
+  }
+  [aria-current="page"] {
+    color: var(--text-color-mid);
+    font-weight: 700;
+  }
+  [role="separator"] {
+    color: var(--text-color-mute);
+  }
+</style>
