@@ -5,8 +5,8 @@ export const SITE = {
   TITLE: 'Astro Vanilla',
   DESCRIPTION: 'A simple Astro starter site.',
 
-  BASE: '/',
-  URL: 'https://localhost:44321',
+  BASE: '/astro-vanilla',
+  URL: 'https://protomorph.github.io',
 
   LANG: 'en',
   LOCALE: 'en-GB',
