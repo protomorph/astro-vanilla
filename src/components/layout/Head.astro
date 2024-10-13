@@ -24,7 +24,7 @@ const canonical = new URL(pathname, Astro.site)
 
 <script is:inline>document.documentElement.setAttribute('data-js','true')</script>
 
-<title>{pathname === '/' ? title : `${title} - ${SITE.TITLE}`}</title>
+<title>{pathname === base ? title : `${title} - ${SITE.TITLE}`}</title>
 
 <meta name="title" content={title} />
 <meta name="description" content={description} />
