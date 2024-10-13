@@ -14,7 +14,6 @@ const dir = dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
   base: SITE.BASE,
   site: SITE.URL,
-  trailingSlash: 'never',
   integrations: [
     AutoImport({ imports: IMPORTS }),
     sitemap(),
