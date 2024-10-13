@@ -6,6 +6,13 @@
   "license": "MIT",
   "main": "astro.config.ts",
   "type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/protomorph/astro-vanilla.git"
+	},
+	"bugs": {
+		"url": "https://github.com/protomorph/astro-vanilla/issues"
+	},
   "keywords": [
     "mdx",
     "ssg",
