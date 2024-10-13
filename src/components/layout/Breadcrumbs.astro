@@ -13,20 +13,21 @@ type Props = {
 const { separator = '&gt;' } = Astro.props
 const { pathname } = new URL(Astro.request.url)
 const paths = pathname.split('/').filter(x => x)
+const base = import.meta.env.BASE_URL
 
 const titlecase = (txt: string) => txt.replace(
   /\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substring(1).toLowerCase()
 )
 
 const parts: Crumb[] = [{
-  href: '/',
+  href: base,
   text: 'Home',
-  last: pathname === '/',
-  current: pathname === '/' ? 'page' : false,
+  last: pathname === base,
+  current: pathname === base ? 'page' : false,
 }]
 
 paths.forEach((text, i) => {
-  const href = `/${paths.slice(0, i + 1).join('/')}`
+  const href = `${base}/${paths.slice(0, i + 1).join('/')}`
   parts.push({
     href,
     last: paths.length - 1 === i,
