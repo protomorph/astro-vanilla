@@ -182,6 +182,16 @@ p:last-child {
   margin-block-end: 0;
 }
 
+code {
+  background: var(--bg-color-mid);
+  font-family: 'Recursive', sans-serif;
+  font-variation-settings:
+    "CASL" var(--fnt-casl, 0),
+    "CRSV" var(--fnt-crsv, 0),
+    "MONO" var(--fnt-mono, 1)
+  ;
+}
+
 pre {
   padding: 16px;
   border-radius: 8px;
@@ -189,12 +199,6 @@ pre {
 
 pre > code {
   background: none;
-  font-family: 'Recursive', sans-serif;
-  font-variation-settings:
-    "CASL" var(--fnt-casl, 0),
-    "CRSV" var(--fnt-crsv, 0),
-    "MONO" var(--fnt-mono, 1)
-  ;
 }
 
 blockquote {
