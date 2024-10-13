@@ -3,10 +3,9 @@ import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'a'>
 
-const { pathname } = Astro.url
-const subpath = pathname.match(/[^\/]+/g)
+const { pathname } = new URL(Astro.request.url)
 const { href, class: className, ...attrs } = Astro.props
-const active = href === pathname || href === '/' + subpath?.[0]
+const active = href === pathname.replace(/\/$/, '')
 ---
 
 <a

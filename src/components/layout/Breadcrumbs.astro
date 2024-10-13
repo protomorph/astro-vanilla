@@ -22,8 +22,8 @@ const titlecase = (txt: string) => txt.replace(
 const parts: Crumb[] = [{
   href: base,
   text: 'Home',
-  last: pathname === base,
-  current: pathname === base ? 'page' : false,
+  last: pathname.replace(/\/$/, '') === base,
+  current: pathname.replace(/\/$/, '') === base ? 'page' : false,
 }]
 
 paths.forEach((text, i) => {
