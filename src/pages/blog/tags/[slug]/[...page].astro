@@ -39,12 +39,13 @@ export async function getStaticPaths (
 const { current, page } = Astro.props
 const title = `Tagged: ${current.name}`
 const description = `Listing of all posts tagged with "${current.name}"`
+const base = import.meta.env.BASE_URL
 ---
 
 <Base {title} {description}>
 	<header slot="before-breadcrumbs"><h1>{title}</h1></header>
 	<BlogLoop posts={page.data} />
-  <p><a href="/blog/tags">View All Tags</a></p>
+  <p><a href={`${base}/blog/tags`}>View All Tags</a></p>
 	<Pagination {page} />
 </Base>
 

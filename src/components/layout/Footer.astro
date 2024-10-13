@@ -9,10 +9,11 @@ const updated = new Intl.DateTimeFormat(SITE.LOCALE, {
   hourCycle: 'h23',
   timeZone: SITE.TIMEZONE,
 })
+const base = import.meta.env.BASE_URL
 ---
 
 <footer>
-	<div>&copy; {year} <a href="/">{SITE.TITLE}</a>. All rights reserved.</div>
+	<div>&copy; {year} <a href={base}>{SITE.TITLE}</a>. All rights reserved.</div>
   <div>Built with <a href="https://astro.build">{Astro.generator}</a></div>
   <small>updated: <time datetime={now.toISOString()}>{updated.format(now)}</time></small>
 </footer>

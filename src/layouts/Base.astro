@@ -13,10 +13,12 @@ interface Props {
 	image?: string
 }
 
+const base = import.meta.env.BASE_URL
+
 const {
   title,
   description,
-  image = '/blog-placeholder-1.jpg'
+  image = `${base}/blog-placeholder-1.jpg`
 } = Astro.props
 ---
 

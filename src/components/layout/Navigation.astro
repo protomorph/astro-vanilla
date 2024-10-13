@@ -2,16 +2,18 @@
 import NavLink from '@src/components/layout/Link.astro'
 
 import { SITE } from '@src/consts'
+
+const base = import.meta.env.BASE_URL
 ---
 
 <nav>
   <section>
     <div>
-      <NavLink href="/">{SITE.TITLE}</NavLink>
+      <NavLink href={base}>{SITE.TITLE}</NavLink>
     </div>
     <ul role="list">
-      <li role="listitem"><NavLink href="/blog">Blog</NavLink></li>
-      <li role="listitem"><NavLink href="/about">About</NavLink></li>
+      <li role="listitem"><NavLink href={`${base}/blog`}>Blog</NavLink></li>
+      <li role="listitem"><NavLink href={`${base}/about`}>About</NavLink></li>
     </ul>
   </section>
 </nav>

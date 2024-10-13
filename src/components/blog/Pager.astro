@@ -8,6 +8,7 @@ interface Props extends HTMLAttributes<'nav'> {
 }
 
 const { prev, next, ...attrs } = Astro.props
+const base = import.meta.env.BASE_URL
 ---
 
 <nav aria-labelledby="pager-label" {...attrs}>
@@ -15,7 +16,7 @@ const { prev, next, ...attrs } = Astro.props
   <ul role="list">
     {prev && (
       <li role="listitem" class="pager__prev">
-        <a href={`/blog/${prev.slug}`}>
+        <a href={`${base}/blog/${prev.slug}`}>
           <span>Previous Post</span>
           {prev.data.title && <span>{prev.data.title}</span>}
         </a>
@@ -23,7 +24,7 @@ const { prev, next, ...attrs } = Astro.props
     )}
     {next && (
       <li role="listitem" class="pager__next">
-        <a href={`/blog/${next.slug}`}>
+        <a href={`${base}/blog/${next.slug}`}>
           <span>Next Post</span>
           {next.data.title && <span>{next.data.title}</span>}
         </a>
