@@ -15,7 +15,7 @@ const {
 	description,
 	image = `${base}/blog-placeholder-1.jpg`
 } = Astro.props
-const { pathname } = Astro.url
+const { pathname } = new URL(Astro.request.url)
 const canonical = new URL(pathname, Astro.site)
 ---
 
