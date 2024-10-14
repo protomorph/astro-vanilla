@@ -12,14 +12,14 @@ export type TaggedItem = {
 
 export function filterByTag (
   tag: string,
-  posts: CollectionEntry<'blog'>[]
-): CollectionEntry<'blog'>[] {
+  posts: (CollectionEntry<'blog'> & { body: string })[]
+): (CollectionEntry<'blog'> & { body: string })[] {
   return posts.filter(({ data }) => data.tags.map(
     (t: string) => slug(t)
   ).includes(slug(tag)))
 }
 
-export function filterDrafts ({ data }: CollectionEntry<'blog'>) {
+export function filterDrafts ({ data }: CollectionEntry<'blog'> & { body: string }) {
   if (import.meta.env.PROD) return (
       new Date(data.pubDate)
     ).getTime() < Date.now() || data.draft !== true
@@ -28,7 +28,7 @@ export function filterDrafts ({ data }: CollectionEntry<'blog'>) {
 }
 
 export function filterFeatured (
-  posts: CollectionEntry<'blog'>[],
+  posts: (CollectionEntry<'blog'> & { body: string })[],
   limit: number = 4
 ) {
   return [...posts.filter(({ data }) => data.featured)].slice(0, limit)
@@ -36,11 +36,11 @@ export function filterFeatured (
 
 export async function getAllPosts (
   limit?: number
-): Promise<CollectionEntry<'blog'>[]> {
+): Promise<(CollectionEntry<'blog'> & { body: string })[]> {
   const posts = (await getCollection('blog', filterDrafts)).sort((
-    a: CollectionEntry<'blog'>,
-    b: CollectionEntry<'blog'>
-  ) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    a: CollectionEntry<'blog'> & { body: string },
+    b: CollectionEntry<'blog'> & { body: string }
+  ) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()) as (CollectionEntry<'blog'> & { body: string})[]
 
   for (let { data } of posts) {
     data.tagged = data.tags.map((tag: string) => ({
@@ -55,7 +55,7 @@ export async function getAllPosts (
 export async function getAllTags (
   limit?: number
 ): Promise<TaggedItem[]> {
-  const posts = await getCollection('blog', filterDrafts)
+  const posts = await getCollection('blog', filterDrafts) as (CollectionEntry<'blog'> & { body: string})[]
   const tags = [...new Set(posts.flatMap(
     ({ data }) => data.tags || []
   ).filter(Boolean))]
@@ -76,12 +76,12 @@ export function readingTime (html: string) {
 }
 
 export function relatedPosts (
-  { data, slug }: CollectionEntry<'blog'>,
+  { data, id }: CollectionEntry<'blog'> & { body: string },
   posts: CollectionEntry<'blog'>[],
   limit: number = 4
 ) {
-  return posts.filter((post: CollectionEntry<'blog'>) => {
-    return post.slug !== slug && data.tags.some(
+  return posts.filter((post: CollectionEntry<'blog'> & { body: string }) => {
+    return post.id !== id && data.tags.some(
       (tag: string) => post.data.tags.includes(tag)
     )
   }).slice(0, limit) || []

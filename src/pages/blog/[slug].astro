@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
+import { type CollectionEntry, render } from 'astro:content'
 
 import Base from '@src/layouts/Base.astro'
 import Share from '@src/components/Share.astro'
@@ -13,9 +13,9 @@ import { type TaggedItem, getAllPosts, readingTime, relatedPosts } from '@src/ut
 
 interface Props {
 	next: CollectionEntry<'blog'> | null
-	post: CollectionEntry<'blog'>
+	post: CollectionEntry<'blog'> & { body: string }
 	prev: CollectionEntry<'blog'> | null
-  related: CollectionEntry<'blog'>[]
+  related: (CollectionEntry<'blog'> & { body: string })[]
 }
 
 export async function getStaticPaths () {
@@ -23,10 +23,10 @@ export async function getStaticPaths () {
 	const count = posts.length
 
 	return posts.map((
-    post: CollectionEntry<'blog'>,
+    post: CollectionEntry<'blog'> & { body: string },
     index: number
   ) => ({
-		params: { slug: post.slug, },
+		params: { slug: post.id, },
 		props: {
 			post,
 			next: index + 1 !== count ? posts[index + 1] : null,
@@ -45,7 +45,7 @@ const {
   updatedDate,
   tagged
 } = post.data
-const { Content } = await post.render()
+const { Content } = await render(post)
 ---
 
 <Base {title} {description} {image}>

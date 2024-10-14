@@ -1,4 +1,6 @@
 ---
+import type { CollectionEntry } from 'astro:content'
+
 import Base from '@src/layouts/Base.astro'
 import TagList from '@src/components/blog/Tags.astro'
 import BlogLoop from '@src/components/blog/Loop.astro'
@@ -6,7 +8,7 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 import { SITE } from '@src/consts'
 import { getAllPosts } from '@src/utils/posts'
 
-const posts = await getAllPosts(SITE.LATEST_POSTS)
+const posts = await getAllPosts(SITE.LATEST_POSTS) as (CollectionEntry<'blog'> & { body: string})[]
 ---
 
 <Base title={SITE.TITLE} description={SITE.DESCRIPTION}>

@@ -16,7 +16,7 @@ const base = import.meta.env.BASE_URL
   <ul role="list">
     {prev && (
       <li role="listitem" class="pager__prev">
-        <a href={`${base}/blog/${prev.slug}`}>
+        <a href={`${base}/blog/${prev.id}`}>
           <span>Previous Post</span>
           {prev.data.title && <span>{prev.data.title}</span>}
         </a>
@@ -24,7 +24,7 @@ const base = import.meta.env.BASE_URL
     )}
     {next && (
       <li role="listitem" class="pager__next">
-        <a href={`${base}/blog/${next.slug}`}>
+        <a href={`${base}/blog/${next.id}`}>
           <span>Next Post</span>
           {next.data.title && <span>{next.data.title}</span>}
         </a>

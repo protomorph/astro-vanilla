@@ -12,7 +12,7 @@ import { getAllPosts } from '@src/utils/posts'
 
 interface Props {
   current: Record<string, string>
-	page: Page<CollectionEntry<'blog'>>
+	page: Page<CollectionEntry<'blog'> & { body: string }>
 }
 
 export async function getStaticPaths (
