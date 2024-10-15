@@ -7,7 +7,7 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 import Pagination from '@src/components/Pagination.astro'
 
 import { SITE } from '@src/consts'
-import { getAllPosts } from '@src/utils/posts'
+import { getAllPosts } from '@src/utils/blog'
 
 export async function getStaticPaths (
 	{ paginate }: GetStaticPathsOptions

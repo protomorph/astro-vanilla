@@ -4,7 +4,7 @@ import type { APIContext, APIRoute } from 'astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
 import { SITE } from '@src/consts'
-import { filterDrafts } from '@src/utils/posts'
+import { filterDrafts } from '@src/utils/blog'
 
 export const GET: APIRoute = async (context: APIContext) => {
 	const posts = (await getCollection('blog', filterDrafts)).sort((

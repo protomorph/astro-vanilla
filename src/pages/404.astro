@@ -4,7 +4,7 @@ import TagList from '@src/components/blog/Tags.astro'
 import BlogLoop from '@src/components/blog/Loop.astro'
 
 import { SITE } from '@src/consts'
-import { getAllPosts } from '@src/utils/posts'
+import { getAllPosts } from '@src/utils/blog'
 
 const posts = await getAllPosts(SITE.LATEST_POSTS)
 const title = '404: Page not found!'

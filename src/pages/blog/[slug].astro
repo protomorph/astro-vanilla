@@ -9,8 +9,8 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 import BlogPager from '@src/components/blog/Pager.astro'
 
 import { SITE } from '@src/consts'
-import type { TaggedItem, PostCollectionEntry } from '@src/utils/posts'
-import { getAllPosts, readingTime, relatedPosts } from '@src/utils/posts'
+import type { TaggedItem, PostCollectionEntry } from '@src/utils/blog'
+import { getAllPosts, readingTime, relatedPosts } from '@src/utils/blog'
 
 interface Props {
 	next: CollectionEntry<'blog'> | null

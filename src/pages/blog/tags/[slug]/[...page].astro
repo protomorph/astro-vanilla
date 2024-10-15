@@ -7,8 +7,8 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 import Pagination from '@src/components/Pagination.astro'
 
 import { SITE } from '@src/consts'
-import { getAllPosts } from '@src/utils/posts'
-import type { PostCollectionEntry, TaggedItem } from '@src/utils/posts'
+import { getAllPosts } from '@src/utils/blog'
+import type { PostCollectionEntry, TaggedItem } from '@src/utils/blog'
 
 interface Props {
   current: TaggedItem
