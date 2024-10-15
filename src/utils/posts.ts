@@ -2,7 +2,7 @@
 import { slug } from 'github-slugger'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
-const base = import.meta.env.BASE_URL
+export type PostCollectionEntry = CollectionEntry<'blog'> & { body: string }
 
 export type TaggedItem = {
   count?: number
@@ -10,16 +10,18 @@ export type TaggedItem = {
   name: string
 }
 
+const base = import.meta.env.BASE_URL
+
 export function filterByTag (
   tag: string,
-  posts: (CollectionEntry<'blog'> & { body: string })[]
-): (CollectionEntry<'blog'> & { body: string })[] {
+  posts: PostCollectionEntry[]
+): PostCollectionEntry[] {
   return posts.filter(({ data }) => data.tags.map(
     (t: string) => slug(t)
   ).includes(slug(tag)))
 }
 
-export function filterDrafts ({ data }: CollectionEntry<'blog'> & { body: string }) {
+export function filterDrafts ({ data }: PostCollectionEntry) {
   if (import.meta.env.PROD) return (
       new Date(data.pubDate)
     ).getTime() < Date.now() || data.draft !== true
@@ -28,7 +30,7 @@ export function filterDrafts ({ data }: CollectionEntry<'blog'> & { body: string
 }
 
 export function filterFeatured (
-  posts: (CollectionEntry<'blog'> & { body: string })[],
+  posts: PostCollectionEntry[],
   limit: number = 4
 ) {
   return [...posts.filter(({ data }) => data.featured)].slice(0, limit)
@@ -36,11 +38,11 @@ export function filterFeatured (
 
 export async function getAllPosts (
   limit?: number
-): Promise<(CollectionEntry<'blog'> & { body: string })[]> {
+): Promise<PostCollectionEntry[]> {
   const posts = (await getCollection('blog', filterDrafts)).sort((
-    a: CollectionEntry<'blog'> & { body: string },
-    b: CollectionEntry<'blog'> & { body: string }
-  ) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()) as (CollectionEntry<'blog'> & { body: string})[]
+    a: PostCollectionEntry,
+    b: PostCollectionEntry
+  ) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()) as PostCollectionEntry[]
 
   for (let { data } of posts) {
     data.tagged = data.tags.map((tag: string) => ({
@@ -55,7 +57,7 @@ export async function getAllPosts (
 export async function getAllTags (
   limit?: number
 ): Promise<TaggedItem[]> {
-  const posts = await getCollection('blog', filterDrafts) as (CollectionEntry<'blog'> & { body: string})[]
+  const posts = await getCollection('blog', filterDrafts) as PostCollectionEntry[]
   const tags = [...new Set(posts.flatMap(
     ({ data }) => data.tags || []
   ).filter(Boolean))]
@@ -76,11 +78,11 @@ export function readingTime (html: string) {
 }
 
 export function relatedPosts (
-  { data, id }: CollectionEntry<'blog'> & { body: string },
+  { data, id }: PostCollectionEntry,
   posts: CollectionEntry<'blog'>[],
   limit: number = 4
 ) {
-  return posts.filter((post: CollectionEntry<'blog'> & { body: string }) => {
+  return posts.filter((post: PostCollectionEntry) => {
     return post.id !== id && data.tags.some(
       (tag: string) => post.data.tags.includes(tag)
     )

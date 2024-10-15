@@ -1,13 +1,13 @@
 ---
 import { Picture } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
 
 import ReadableDate from '@src/components/blog/Date.astro'
 
-import { type TaggedItem, readingTime } from '@src/utils/posts'
+import { readingTime } from '@src/utils/posts'
+import type { TaggedItem, PostCollectionEntry } from '@src/utils/posts'
 
 interface Props {
-	posts: (CollectionEntry<'blog'> & { body: string })[]
+	posts: PostCollectionEntry[]
   title?: string
 }
 

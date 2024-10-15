@@ -9,13 +9,14 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 import BlogPager from '@src/components/blog/Pager.astro'
 
 import { SITE } from '@src/consts'
-import { type TaggedItem, getAllPosts, readingTime, relatedPosts } from '@src/utils/posts'
+import type { TaggedItem, PostCollectionEntry } from '@src/utils/posts'
+import { getAllPosts, readingTime, relatedPosts } from '@src/utils/posts'
 
 interface Props {
 	next: CollectionEntry<'blog'> | null
-	post: CollectionEntry<'blog'> & { body: string }
+	post: PostCollectionEntry
 	prev: CollectionEntry<'blog'> | null
-  related: (CollectionEntry<'blog'> & { body: string })[]
+  related: PostCollectionEntry[]
 }
 
 export async function getStaticPaths () {
@@ -23,7 +24,7 @@ export async function getStaticPaths () {
 	const count = posts.length
 
 	return posts.map((
-    post: CollectionEntry<'blog'> & { body: string },
+    post: PostCollectionEntry,
     index: number
   ) => ({
 		params: { slug: post.id, },

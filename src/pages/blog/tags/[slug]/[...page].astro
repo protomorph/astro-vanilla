@@ -1,6 +1,5 @@
 ---
 import { slug } from 'github-slugger'
-import type { CollectionEntry } from 'astro:content'
 import type { GetStaticPathsOptions, Page } from 'astro'
 
 import Base from '@src/layouts/Base.astro'
@@ -9,10 +8,11 @@ import Pagination from '@src/components/Pagination.astro'
 
 import { SITE } from '@src/consts'
 import { getAllPosts } from '@src/utils/posts'
+import type { PostCollectionEntry, TaggedItem } from '@src/utils/posts'
 
 interface Props {
-  current: Record<string, string>
-	page: Page<CollectionEntry<'blog'> & { body: string }>
+  current: TaggedItem
+	page: Page<PostCollectionEntry>
 }
 
 export async function getStaticPaths (
