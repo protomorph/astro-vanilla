@@ -4,6 +4,7 @@ import { Picture } from 'astro:assets'
 import ReadableDate from '@src/components/blog/Date.astro'
 
 import { readingTime } from '@src/utils/blog'
+import { permalink } from '@src/utils/permalink'
 import type { TaggedItem, PostCollectionEntry } from '@src/utils/blog'
 
 interface Props {
@@ -12,7 +13,6 @@ interface Props {
 }
 
 const { posts, title } = Astro.props
-const base = import.meta.env.BASE_URL
 ---
 
 <section>
@@ -20,7 +20,7 @@ const base = import.meta.env.BASE_URL
   <ul role="list">
     {posts.map(({ body, data, id }) => (
       <li role="listitem">
-        <a href={`${base}/blog/${id}`}>
+        <a href={permalink.blog(id)}>
           {data.heroImage && (
             <Picture
               src={data.heroImage} height={360} width={720}
@@ -39,7 +39,6 @@ const base = import.meta.env.BASE_URL
         </div>
       </li>
     ))}
-    {console.log(posts[0].rendered)}
   </ul>
 </section>
 

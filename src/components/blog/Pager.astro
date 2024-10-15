@@ -2,13 +2,14 @@
 import type { HTMLAttributes } from 'astro/types'
 import type { CollectionEntry } from 'astro:content'
 
+import { permalink } from '@src/utils/permalink'
+
 interface Props extends HTMLAttributes<'nav'> {
   next: CollectionEntry<'blog'> | null
   prev: CollectionEntry<'blog'> | null
 }
 
 const { prev, next, ...attrs } = Astro.props
-const base = import.meta.env.BASE_URL
 ---
 
 <nav aria-labelledby="pager-label" {...attrs}>
@@ -16,7 +17,7 @@ const base = import.meta.env.BASE_URL
   <ul role="list">
     {prev && (
       <li role="listitem" class="pager__prev">
-        <a href={`${base}/blog/${prev.id}`}>
+        <a href={permalink.blog(prev.id)}>
           <span>Previous Post</span>
           {prev.data.title && <span>{prev.data.title}</span>}
         </a>
@@ -24,7 +25,7 @@ const base = import.meta.env.BASE_URL
     )}
     {next && (
       <li role="listitem" class="pager__next">
-        <a href={`${base}/blog/${next.id}`}>
+        <a href={permalink.blog(next.id)}>
           <span>Next Post</span>
           {next.data.title && <span>{next.data.title}</span>}
         </a>

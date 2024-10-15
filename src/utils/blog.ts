@@ -2,6 +2,8 @@
 import { slug } from 'github-slugger'
 import { type CollectionEntry, getCollection } from 'astro:content'
 
+import { permalink } from '@src/utils/permalink'
+
 export type PostCollectionEntry = CollectionEntry<'blog'> & { body: string }
 
 export type TaggedItem = {
@@ -9,8 +11,6 @@ export type TaggedItem = {
   href: string
   name: string
 }
-
-const base = import.meta.env.BASE_URL
 
 export function filterByTag (
   tag: string,
@@ -46,7 +46,7 @@ export async function getAllPosts (
 
   for (let { data } of posts) {
     data.tagged = data.tags.map((tag: string) => ({
-      href: `${base}/blog/tags/${slug(tag)}`,
+      href: permalink.tags(slug(tag)),
       name: tag,
     })) || []
   }
@@ -64,7 +64,7 @@ export async function getAllTags (
 
   return tags.map((tag: string) => ({
     count: filterByTag(tag, posts).length,
-    href: `${base}/blog/tags/${slug(tag)}`,
+    href: permalink.tags(slug(tag)),
     name: tag,
   })).sort(
     (a, b) => b.count - a.count

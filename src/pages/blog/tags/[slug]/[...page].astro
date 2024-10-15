@@ -8,6 +8,7 @@ import Pagination from '@src/components/Pagination.astro'
 
 import { SITE } from '@src/consts'
 import { getAllPosts } from '@src/utils/blog'
+import { permalink } from '@src/utils/permalink'
 import type { PostCollectionEntry, TaggedItem } from '@src/utils/blog'
 
 interface Props {
@@ -22,7 +23,7 @@ export async function getStaticPaths (
   const tags = [...new Set(posts.flatMap(
     ({ data }) => data.tags || []
   ).filter(Boolean))].map((tag: string) => ({
-    href: `/blog/tags/${slug(tag)}`,
+    href: permalink.tags(slug(tag)),
     name: tag,
   }))
 
@@ -39,13 +40,12 @@ export async function getStaticPaths (
 const { current, page } = Astro.props
 const title = `Tagged: ${current.name}`
 const description = `Listing of all posts tagged with "${current.name}"`
-const base = import.meta.env.BASE_URL
 ---
 
 <Base {title} {description}>
 	<header slot="before-breadcrumbs"><h1>{title}</h1></header>
 	<BlogLoop posts={page.data} />
-  <p><a href={`${base}/blog/tags`}>View All Tags</a></p>
+  <p><a href={permalink.root('blog/tags')}>View All Tags</a></p>
 	<Pagination {page} />
 </Base>
 

@@ -5,19 +5,19 @@ import BlogLoop from '@src/components/blog/Loop.astro'
 
 import { SITE } from '@src/consts'
 import { getAllPosts } from '@src/utils/blog'
+import { permalink } from '@src/utils/permalink'
 
 const posts = await getAllPosts(SITE.LATEST_POSTS)
 const title = '404: Page not found!'
 const description = 'The page you are looking for does not exist.'
-const base = import.meta.env.BASE_URL
 ---
 
 <Base {title} {description}>
 	<header slot="before-content"><h1>{title}</h1></header>
   <p>
     The page you are looking for could not be found,
-    please try the <a href="/">home page</a> or check the
-    <a href={`${base}/blog`}>blog</a> for more posts.
+    please try the <a href={permalink.root('')}>home page</a> or check the
+    <a href={permalink.root('blog')}>blog</a> for more posts.
   </p>
 	<BlogLoop {posts} title="Latest Posts" />
   <hr>

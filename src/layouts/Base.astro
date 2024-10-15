@@ -6,6 +6,7 @@ import LayoutNavigation from '@src/components/layout/Navigation.astro'
 import LayoutBreadcrumbs from '@src/components/layout/Breadcrumbs.astro'
 
 import { SITE } from '@src/consts'
+import { permalink } from '@src/utils/permalink'
 
 interface Props {
 	title: string
@@ -13,12 +14,10 @@ interface Props {
 	image?: string
 }
 
-const base = import.meta.env.BASE_URL
-
 const {
   title,
   description,
-  image = `${base}/blog-placeholder-1.jpg`
+  image = permalink.root(`blog-placeholder-1.jpg`)
 } = Astro.props
 ---
 
