@@ -5,8 +5,8 @@ export const SITE = {
   TITLE: 'Astro Vanilla',
   DESCRIPTION: 'A simple Astro starter site.',
 
-  BASE: '/astro-vanilla',
-  URL: 'https://protomorph.github.io',
+  BASE: '/',
+  URL: 'https://astro-vanilla.netlify.app/',
 
   LANG: 'en',
   LOCALE: 'en-GB',
