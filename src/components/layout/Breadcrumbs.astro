@@ -2,7 +2,6 @@
 type Crumb = {
   href: string
   text: string
-  last: boolean
   current: 'page' | false
 }
 
@@ -22,7 +21,6 @@ const titlecase = (txt: string) => txt.replace(
 const parts: Crumb[] = [{
   href: base,
   text: 'Home',
-  last: pathname.replace(/\/$/, '') === base,
   current: pathname.replace(/\/$/, '') === base ? 'page' : false,
 }]
 
@@ -30,7 +28,6 @@ paths.forEach((text, i) => {
   const href = `/${paths.slice(0, i + 1).join('/')}`
   href !== base && parts.push({
     href,
-    last: paths.length - 1 === i,
     text: titlecase(text.replace(/[-_]/g, ' ')),
     current: pathname === href ? 'page' : false,
   })
@@ -39,7 +36,7 @@ paths.forEach((text, i) => {
 
 <nav>
   <ol role="list">
-    {parts.map(({ text, href, current, last }) => last ? (
+    {parts.map(({ text, href, current }) => current ? (
       <li aria-current={current} role="listitem"><span>{text}</span></li>
     ) : (
       <li role="listitem"><a {href}>{text}</a><span role="separator" set:html={separator} /></li>
