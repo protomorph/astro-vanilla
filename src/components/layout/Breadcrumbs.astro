@@ -14,6 +14,7 @@ const { separator = '&gt;' } = Astro.props
 const { pathname } = new URL(Astro.request.url)
 const paths = pathname.split('/').filter(x => x)
 const base = import.meta.env.BASE_URL
+const homePage = pathname.replace(/\/$/, '') === base || pathname.replace(/\/$/, '') === ''
 
 const titlecase = (txt: string) => txt.replace(
   /\w\S*/g, (t) => t.charAt(0).toUpperCase() + t.substring(1).toLowerCase()
@@ -22,8 +23,8 @@ const titlecase = (txt: string) => txt.replace(
 const parts: Crumb[] = [{
   href: base,
   text: 'Home',
-  last: pathname.replace(/\/$/, '') === base,
-  current: pathname.replace(/\/$/, '') === base ? 'page' : false,
+  last: homePage,
+  current: homePage ? 'page' : false,
 }]
 
 paths.forEach((text, i) => {
