@@ -13,9 +13,9 @@
 /** Properties. */
 
 :root {
-	--accent: hsl(235, 88%, 64%);
-	--accent-dark: hsl(235, 80%, 40%);
-  --bg-color: light-dark(hsl(235, 16%, 92%), hsl(235, 16%, 12%));
+	--accent: hsl(235, 88%, 72%);
+	--accent-dark: hsl(235, 80%, 32%);
+  --bg-color: light-dark(hsl(235, 16%, 92%), hsl(235, 16%, 8%));
   --bg-color-mid: light-dark(hsl(235, 16%, 88%), hsl(235, 16%, 16%));
   --bg-color-mute: light-dark(hsl(234, 20%, 90%), hsl(234, 20%, 14%));
   --text-color: light-dark(hsl(235, 32%, 12%), hsl(235, 32%, 88%));
