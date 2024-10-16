@@ -18,6 +18,7 @@ const {
 } = Astro.props
 const { pathname } = new URL(Astro.request.url)
 const canonical = new URL(pathname, Astro.site)
+const homePage = pathname.replace(/\/$/, '') === base || pathname.replace(/\/$/, '') === ''
 ---
 
 <meta charset="utf-8" />
@@ -25,7 +26,7 @@ const canonical = new URL(pathname, Astro.site)
 
 <script is:inline>document.documentElement.setAttribute('data-js','true')</script>
 
-<title>{pathname.replace(/\/$/, '') === base ? title : `${title} - ${SITE.TITLE}`}</title>
+<title>{homePage ? title : `${title} - ${SITE.TITLE}`}</title>
 
 <meta name="title" content={title} />
 <meta name="description" content={description} />
