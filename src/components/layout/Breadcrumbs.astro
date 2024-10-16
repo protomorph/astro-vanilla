@@ -26,10 +26,11 @@ const parts: Crumb[] = [{
 
 paths.forEach((text, i) => {
   const href = `/${paths.slice(0, i + 1).join('/')}`
+  console.log(href, pathname)
   href !== base && parts.push({
     href,
     text: titlecase(text.replace(/[-_]/g, ' ')),
-    current: pathname === href ? 'page' : false,
+    current: pathname.replace(/\/$/, '') === href ? 'page' : false,
   })
 })
 ---
