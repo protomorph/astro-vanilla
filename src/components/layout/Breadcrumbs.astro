@@ -32,7 +32,7 @@ paths.forEach((text, i) => {
     href,
     last: paths.length - 1 === i,
     text: titlecase(text.replace(/[-_]/g, ' ')),
-    current: pathname === href ? 'page' : false,
+    current: pathname.replace(/\/$/, '') === href ? 'page' : false,
   })
 })
 ---
