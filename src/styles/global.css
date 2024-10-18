@@ -45,6 +45,7 @@ html {
   line-height: 1.5;
   overflow-anchor: auto;
   scroll-behavior: smooth;
+  scroll-padding-block: 4rem;
   scrollbar-width: thin;
   text-rendering: auto;
   -webkit-text-size-adjust: none;
