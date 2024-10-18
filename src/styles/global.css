@@ -18,6 +18,8 @@
   --bg-color: light-dark(hsl(235, 16%, 92%), hsl(235, 16%, 8%));
   --bg-color-mid: light-dark(hsl(235, 16%, 88%), hsl(235, 16%, 16%));
   --bg-color-mute: light-dark(hsl(234, 20%, 90%), hsl(234, 20%, 14%));
+  --text-on-accent: #0f0f0f;
+  --text-on-accent-dark: #f0f0f0;
   --text-color: light-dark(hsl(235, 32%, 12%), hsl(235, 32%, 88%));
   --text-color-mid: light-dark(hsl(235, 16%, 32%), hsl(235, 16%, 56%));
   --text-color-mute: light-dark(hsl(235, 16%, 56%), hsl(235, 16%, 40%));
