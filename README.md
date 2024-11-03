@@ -4,29 +4,7 @@ A simple, minimal style, framework free Astro blog starter template.
 
 ## Getting Started
 
-Clone this Repository.
-
-```sh
-# with git
-git clone https://github.com/protomorph/astro-vanilla.git
-# or with GitHub CLI
-gh repo clone protomorph/astro-vanilla
-```
-
-then run:
-
-```sh
-# install dependencies
-npm install
-# run dev server
-npm run dev
-# preview production build
-npm run preview
-# build production site
-npm run build
-```
-
-or create a new astro project with
+Create a new astro project with
 
 ```sh
 npm create astro@latest -- --template protomorph/astro-vanilla
@@ -38,9 +16,9 @@ or use one of these:
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github.com/protomorph/astro-vanilla)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/protomorph/astro-vanilla)
 
-## Intergrations
+## Integrations
 
-This project comes with some intergration pre installed:
+This project comes with some integrations pre installed:
 
  - MDX
  - RSS
