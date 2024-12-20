@@ -29,7 +29,7 @@ const {
     <LayoutSkiplink text="Jump to Main Content" />
     <LayoutNavigation />
     <slot name="before-breadcrumbs" />
-    <LayoutBreadcrumbs />
+    <LayoutBreadcrumbs {title} />
     <slot name="before-content" />
     <main id="main-content"><slot /></main>
     <slot name="after-content" />
